@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-2 8:59:48 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.acm.bean.Department" table="DEPARTMENT">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <many-to-one name="father" class="com.acm.bean.Department" fetch="join" cascade="all">
+            <column name="FATHER" />
+        </many-to-one>
+        <set name="children" table="DEPARTMENT" cascade="all"><!-- cascade为级联保存 -->
+            <key>
+                <column name="FATHER" />
+            </key>
+            <one-to-many class="com.acm.bean.Department" />
+        </set>
+    </class>
+</hibernate-mapping>
