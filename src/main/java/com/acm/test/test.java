@@ -18,8 +18,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.acm.bean.Department;
-import com.acm.dao.BaseDao;
-import com.acm.service.DepartmentService;
+import com.acm.dao.impl.BaseDaoImpl;
+import com.acm.service.impl.DepartmentServiceImpl;
 
 /**
 * @author 计算机网络应用 路素飞 E-mail:2512977541@qq.com
@@ -33,9 +33,9 @@ public class test {
    
 	
 	@Resource
-	BaseDao<Department> baseDao;
+	BaseDaoImpl<Department> baseDao;
 	@Resource
-	DepartmentService departmentService;
+	DepartmentServiceImpl departmentService;
 	@Resource
 	SessionFactory sessionFactory;
 	//private ApplicationContext ac = new ClassPathXmlApplicationContext("spring-*.xml");
@@ -76,10 +76,16 @@ public class test {
 		 trans.commit();*/
 		
 		//级联查询
-		department = departmentService.findDepartmentById(17);
+	/*	department = departmentService.getDepartmentById(17);
 		System.out.println(department);
 		
-		System.out.println(department.getChildren());
+		System.out.println(department.getChildren());*/
+		
+		/*department.setId(13);
+		department.setName("eee");
+		departmentService.updateDepartment(department);*/
+		
+		departmentService.deleteDepartmentById(14);
 		
 		
 		

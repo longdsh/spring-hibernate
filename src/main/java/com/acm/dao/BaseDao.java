@@ -1,57 +1,56 @@
 package com.acm.dao;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import javax.annotation.Resource;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.annotations.Where;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.acm.bean.Department;
-import com.acm.util.ReflectionUtils;
+import java.util.List;
 
 /**
- * @author 计算机网络应用 路素飞 E-mail:2512977541@qq.com
- * @version 创建时间：2017年11月2日 上午8:23:46 类说明
- */
-@Repository
-public class BaseDao<T> {
+* @author 计算机网络应用 路素飞 E-mail:2512977541@qq.com
+* @version 创建时间：2017年11月2日 下午1:29:57
+* 类说明
+*/
+public interface BaseDao<T> {
+	/**
+	 * 保存实体
+	 * 
+	 * @param entity
+	 */
+	void save(T entity);
 
-	@Resource
-	private SessionFactory sessionFactory;
-	private Class<T> clazz = null;
+	/**
+	 * 删除实体
+	 * 
+	 * @param id
+	 */
+	void delete(int id);
 
-	public BaseDao() {// 反射
-		//this表示的是new的那个类 即 BaseDao的子类
-		clazz = ReflectionUtils.getSuperGenericType(this.getClass());
-	}
+	/**
+	 * 更新实体
+	 * 
+	 * @param entity
+	 */
+	void update(T entity);
 
-	// @Transactional
-	public void save(T entity) {
+	/**
+	 * 查询实体，如果id为null，则返回null，并不会抛异常。
+	 * 
+	 * @param id
+	 * @return
+	 */
+	T getById(int id);
 
-		getSession().save(entity);
+	/**
+	 * 查询实体
+	 * 
+	 * @param ids
+	 * @return
+	 */
+	List<T> getByIds(List<Integer> ids);
 
-	}
+	/**
+	 * 查询所有
+	 * 
+	 * @return
+	 */
+	List<T> findAll();
 
-	public T findById(int id) {
-		System.out.println(clazz);
-		return getSession().get(clazz, id);
-	}
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
-	public Session getSession() {
-		return sessionFactory.getCurrentSession();
-	}
 
 }
