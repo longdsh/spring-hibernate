@@ -14,7 +14,7 @@
         <many-to-one name="father" class="com.acm.bean.Department" fetch="join" cascade="all">
             <column name="FATHER" />
         </many-to-one>
-        <set name="children" table="DEPARTMENT" cascade="all"><!-- cascade为级联保存 -->
+        <set name="children" table="DEPARTMENT" cascade="all"> <!-- cascade为级联保存 级联删除谨慎使用0.0-->
             <key>
                 <column name="FATHER" />
             </key>
