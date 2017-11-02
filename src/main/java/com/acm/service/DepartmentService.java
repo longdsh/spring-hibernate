@@ -19,7 +19,7 @@ public class DepartmentService {
 	@Resource
 	BaseDao<Department> baseDao;
 	
-	@Transactional
+	//@Transactional
 	public void save(Department department) {
 		baseDao.save(department);
 	}
