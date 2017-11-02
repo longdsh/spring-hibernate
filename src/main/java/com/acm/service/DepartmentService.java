@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.acm.bean.Department;
 import com.acm.dao.BaseDao;
+import com.acm.dao.DepartmentDao;
 
 /**
 * @author 计算机网络应用 路素飞 E-mail:2512977541@qq.com
@@ -17,10 +18,16 @@ import com.acm.dao.BaseDao;
 public class DepartmentService {
     
 	@Resource
-	BaseDao<Department> baseDao;
+	DepartmentDao departmentDao;
 	
 	//@Transactional
-	public void save(Department department) {
-		baseDao.save(department);
+	public void saveDepartment(Department department) {
+		departmentDao.save(department);
 	}
+	
+	public Department findDepartmentById(int id) {
+		return departmentDao.findById(id);
+	}
+	
+	
 }

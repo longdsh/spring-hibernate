@@ -54,12 +54,18 @@ public class test {
 		department1.setName("b");
 		Department department2 = new Department();
 		department2.setName("c");
+		
+		Department department3 = new Department();
+		department3.setName("d");
 		department1.setFather(department);
+
+
 		Set<Department> departments = new HashSet<>();
 		departments.add(department2);
+		departments.add(department3);
 		department1.setChildren(departments);
 		//baseDao.save(department1);
-		departmentService.save(department1);
+		//departmentService.saveDepartment(department1);
 		
 		/*Session session = sessionFactory.getCurrentSession();
 		
@@ -68,6 +74,12 @@ public class test {
 		 Transaction trans=session.beginTransaction();	
 		 session.save(department1);
 		 trans.commit();*/
+		
+		//级联查询
+		department = departmentService.findDepartmentById(17);
+		System.out.println(department);
+		
+		System.out.println(department.getChildren());
 		
 		
 		

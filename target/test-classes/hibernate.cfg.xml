@@ -23,6 +23,7 @@
 
 		<!-- 二级缓存相关 -->
 		
+		
 		<mapping resource="com/acm/bean/Department.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>
